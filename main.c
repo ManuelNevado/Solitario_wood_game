@@ -9,7 +9,24 @@ int offset(int i, int j){
     return i*cols +j;
 }
 
+bool check_live(int* mat);
+
+char get_char(){
+    char mov;
+    scanf(" %c", &mov);
+    return mov;
+}
+
+char get_int(){
+    int n;
+    scanf("%d", &n);
+    return n;
+}
+
+
 void print_matrix(int* mat){
+
+
     for(int i=0;i < rows;i++){
         for(int j =0;j < cols;j++){
             int value = mat[offset(i,j)];
@@ -89,7 +106,7 @@ void make_move(int* mat, int i, int j, char mov){
 int menu(){
     int choice;
     printf("Select mode to run the program\n");
-    printf("1- Play game");
+    printf("1- Play game\n");
     printf("2- Genetic Algorithm best Sol\n");
     printf("3- Breadth first searh\n");
     printf("4- Depth first search\n");
@@ -124,6 +141,28 @@ void game(){
     //Se rellena la matriz
     fill_matrix_init(mat);
     print_matrix(mat);
+    
+    //Bucle principal de juego
+    char mov;
+    int x, y;
+    bool live = true; 
+    printf("Choose the coordinates x y: ");
+    x = get_int();
+    y = get_int();
+    printf("Choose the move: ");
+    mov = get_char();
+    while(live){
+        if(check_move(mat,x,y,mov)){
+            make_move(mat,x,y,mov);
+            print_matrix(mat);
+        }else
+            printf("You cannot make that move\n");
+        printf("Choose the coordinates x y: ");
+        x = get_int();
+        y = get_int();
+        printf("Choose the move: ");
+        mov = get_char();
+    }
 
     //liberamos la matriz de la memoria 
     free(mat);
@@ -138,3 +177,4 @@ int main(){
         printf("Not implemented yet!\n");
     return 0;
 }
+
