@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 const int rows = 9, cols = 9;
 
@@ -50,14 +51,57 @@ void fill_matrix_init(int *mat){
  * movimiento para la derecha = d
  */
 
-void aplicar_movimiento(int* mat, int i, int j, char mov){
-    
+bool check_move(int* mat , int i, int j, char mov){
+    if(mov == 'w' && j>1 && mat[offset(i,j-1)] == 1 && mat[offset(i,j-2)] == 0)
+        return true;
+    if(mov == 'a' && i>1 && mat[offset(i-1,j)] == 1 && mat[offset(i-2,j)] == 0)
+        return true;
+    if(mov == 's' && j<7 && mat[offset(i,j+1)] == 1 && mat[offset(i,j+2)] == 0)
+        return true;
+    if(mov == 'd' && i<7 && mat[offset(i+1,j)] == 1 && mat[offset(i+2,j)] == 0)
+        return true;
+
+    return false;
 }
 
-int main(){
+
+void make_move(int* mat, int i, int j, char mov){
+   if(mov == 'w'){
+       mat[offset(i,j)] = 0;
+       mat[offset(i,j-1)] = 0;
+       mat[offset(i,j-2)] = 1;
+   }else if(mov == 's'){
+       mat[offset(i,j)] = 0;
+       mat[offset(i,j+1)] = 0;
+       mat[offset(i,j+2)] = 1;
+   }
+    else if(mov == 'a'){
+       mat[offset(i,j)] = 0;
+       mat[offset(i-1,j)] = 0;
+       mat[offset(i-2,j)] = 1;
+   }else if(mov == 'd'){
+       mat[offset(i,j)] = 0;
+       mat[offset(i+1,j)] = 0;
+       mat[offset(i+2,j)] = 1;
+   }
+}
+
+int menu(){
+    int choice;
+    printf("Select mode to run the program\n");
+    printf("1- Play game");
+    printf("2- Genetic Algorithm best Sol\n");
+    printf("3- Breadth first searh\n");
+    printf("4- Depth first search\n");
+    printf("\nOption: ");
+    choice = scanf("%d",&choice);
+
+    return choice;
+}
+
+void game(){
     //alojamos la matriz en el sistema
     int *mat = (int*)malloc(rows*cols*sizeof(int));
-    printf("Matriz alojada en el sistema\n");
     /* Hay que rellenar la matriz de la siguiente manera:
      * -1 significa que no se puede poner una ficha en esa posicion, 
      * +1 significa que hay una ficha en esa posicion
@@ -79,11 +123,18 @@ int main(){
     
     //Se rellena la matriz
     fill_matrix_init(mat);
-    printf("Matriz rellenada\n");
     print_matrix(mat);
 
     //liberamos la matriz de la memoria 
     free(mat);
     printf("Fin\n");
+}
+
+int main(){
+    int choice = menu();
+    if(choice == 1)
+        game();
+    else
+        printf("Not implemented yet!\n");
     return 0;
 }
