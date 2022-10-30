@@ -65,6 +65,16 @@ void fill_matrix_init(int *mat){
  * movimiento para la izquierda = i
  * movimiento para la derecha = d
  */
+char map_move(char move){
+    if (move == 'w')
+        return 'a';
+    if (move == 's')
+        return 'd';
+    if (move == 'a')
+        return 'w';
+    if (move == 'd')
+        return 's';
+}
 
 bool check_move(int* mat , int i, int j, char mov){
     if(mov == 'w' && j>1 && mat[offset(i,j-1)] == 1 && mat[offset(i,j-2)] == 0)
@@ -148,10 +158,10 @@ void game(){
     x = get_int();
     y = get_int();
     printf("Choose the move: ");
-    mov = get_char();
+    mov = map_move(get_char());
     while(live){
-        if(check_move(mat,x,y,mov)){
-            make_move(mat,x,y,mov);
+        if(check_move(mat,y,x,mov)){
+            make_move(mat,y,x,mov);
             print_matrix(mat);
         }else
             printf("You cannot make that move\n");
@@ -159,7 +169,7 @@ void game(){
         x = get_int();
         y = get_int();
         printf("Choose the move: ");
-        mov = get_char();
+        mov = map_move(get_char());
     }
 
     //liberamos la matriz de la memoria 
