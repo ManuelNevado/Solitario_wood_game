@@ -25,8 +25,6 @@ char get_int(){
 
 
 void print_matrix(int* mat){
-
-
     for(int i=0;i < rows;i++){
         for(int j =0;j < cols;j++){
             int value = mat[offset(i,j)];
