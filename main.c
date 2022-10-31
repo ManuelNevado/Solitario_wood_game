@@ -2,14 +2,11 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdbool.h>
-
-const int rows = 9, cols = 9;
-
-int offset(int i, int j){
-    return i*cols +j;
-}
+#include "genetic_sol.h"
 
 bool check_live(int* mat);
+
+void genetic();
 
 char get_char(){
     char mov;
@@ -74,19 +71,6 @@ char map_move(char move){
         return 'w';
     if (move == 'd')
         return 's';
-}
-
-bool check_move(int* mat , int i, int j, char mov){
-    if(mov == 'w' && j>1 && mat[offset(i,j-1)] == 1 && mat[offset(i,j-2)] == 0)
-        return true;
-    if(mov == 'a' && i>1 && mat[offset(i-1,j)] == 1 && mat[offset(i-2,j)] == 0)
-        return true;
-    if(mov == 's' && j<7 && mat[offset(i,j+1)] == 1 && mat[offset(i,j+2)] == 0)
-        return true;
-    if(mov == 'd' && i<7 && mat[offset(i+1,j)] == 1 && mat[offset(i+2,j)] == 0)
-        return true;
-
-    return false;
 }
 
 
@@ -177,12 +161,25 @@ void game(){
     printf("Fin\n");
 }
 
+void genetic(){
+
+    int* mat = (int*)malloc(rows*cols*sizeof(int));
+    fill_matrix_init(mat);
+    print_matrix(mat);
+    
+    int* candidatos = 
+}
+
 int main(){
     int choice = menu();
     if(choice == 1)
         game();
-    else
+    else if(choice == 2){
+        genetic();
+    }
+    else{
         printf("Not implemented yet!\n");
+    }
     return 0;
 }
 
