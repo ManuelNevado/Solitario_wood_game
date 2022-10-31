@@ -96,16 +96,17 @@ void make_move(int* mat, int i, int j, char mov){
 }
 
 int menu(){
-    int choice;
+    /*
+    int choice = 0;
     printf("Select mode to run the program\n");
     printf("1- Play game\n");
     printf("2- Genetic Algorithm best Sol\n");
     printf("3- Breadth first searh\n");
     printf("4- Depth first search\n");
     printf("\nOption: ");
-    choice = scanf("%d",&choice);
-
-    return choice;
+    choice = scanf(" %d",&choice);
+    */
+    return 2;
 }
 
 void game(){
@@ -167,7 +168,8 @@ void genetic(){
     fill_matrix_init(mat);
     print_matrix(mat);
     
-    int* candidatos = 
+    int* candidatos = create_candidate_list(mat);
+    print_matrix_candidate(candidatos); 
 }
 
 int main(){
