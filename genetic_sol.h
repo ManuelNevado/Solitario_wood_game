@@ -3,13 +3,13 @@
 #include <math.h>
 
 
-    //Constantes
-    const int rows = 9, cols = 9;
-    const char moves[4] = {'w','a','s','d'};
+//Constantes
+const int rows = 9, cols = 9;
+const char moves[4] = {'w','a','s','d'};
 
-    //Estructuras de datos
+//Estructuras de datos
 
-    struct lista_movibles{
+struct lista_movibles{
         int* top;
         int* left;
         int* centre;
@@ -98,4 +98,22 @@
             }
         printf("\n");
     }
+}
+
+bool recorre_L(int* mat, int i, int j){
+    return false;
+}
+
+void locate_L(int* mat){
+    int* x = (int*) malloc(35*sizeof(int));
+    int* y = (int*) malloc(35*sizeof(int));
+    for(int i=0;i<rows;i++){
+        for (int j=0;j<cols;j++){
+            if(mat[offset(i,j) == 1] && recorre_L(mat,i,j)){
+
+            }
+        }
+    }
+    free(x);
+    free(y);
 }
