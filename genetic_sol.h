@@ -1,13 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+#include <stdbool.h>
 
 //Constantes
 const int rows = 9, cols = 9;
 const char moves[4] = {'w','a','s','d'};
 
 //Estructuras de datos
+
+struct pair_int{
+    int x;
+    int y;
+};
 
 struct lista_movibles{
         int* top;
@@ -104,16 +109,22 @@ bool recorre_L(int* mat, int i, int j){
     return false;
 }
 
-void locate_L(int* mat){
-    int* x = (int*) malloc(35*sizeof(int));
-    int* y = (int*) malloc(35*sizeof(int));
-    for(int i=0;i<rows;i++){
-        for (int j=0;j<cols;j++){
-            if(mat[offset(i,j) == 1] && recorre_L(mat,i,j)){
 
-            }
+//By default this function returns the short arm coordinate of the L-shaped pattern
+void locate_L(int* mat, int ini_row, int fin_row, int ini_col, int fin_col, bool const s_i, bool const s_j){
+    
+    struct pair_int* coordinates = (struct pair_int*) malloc(35*sizeof(struct pair_int));
+    int i = ini_row;
+    int j = ini_col;
+    while(i!=fin_row){
+        while(j!=fin_col){
+            
+                
+
+            if(s_j) j++;
+            else j--;
         }
+        if(s_i) i++;
+        else i--;
     }
-    free(x);
-    free(y);
 }

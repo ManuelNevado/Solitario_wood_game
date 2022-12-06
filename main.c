@@ -2,7 +2,9 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <unistd.h>
 #include "genetic_sol.h"
+#include "help.h"
 
 bool check_live(int* mat);
 
@@ -172,13 +174,16 @@ void genetic(){
     print_matrix_candidate(candidatos); 
 }
 
-int main(){
-    int choice = menu();
-    if(choice == 1)
+int main(int argc, char **argv){
+        
+    char opt = getopt(argc,argv,"gGh");
+
+    if(opt == 'g')
         game();
-    else if(choice == 2){
+    else if(opt == 'G'){
         genetic();
-    }
+    }else if (opt == 'h')
+        help();
     else{
         printf("Not implemented yet!\n");
     }
