@@ -65,14 +65,16 @@ void fill_matrix_init(int *mat){
  * movimiento para la derecha = d
  */
 char map_move(char move){
+    char mv;
     if (move == 'w')
-        return 'a';
+        mv = 'a';
     if (move == 's')
-        return 'd';
+        mv = 'd';
     if (move == 'a')
-        return 'w';
+        mv = 'w';
     if (move == 'd')
-        return 's';
+        mv = 's';
+    return mv;
 }
 
 
@@ -98,7 +100,6 @@ void make_move(int* mat, int i, int j, char mov){
 }
 
 int menu(){
-    /*
     int choice = 0;
     printf("Select mode to run the program\n");
     printf("1- Play game\n");
@@ -106,9 +107,9 @@ int menu(){
     printf("3- Breadth first searh\n");
     printf("4- Depth first search\n");
     printf("\nOption: ");
-    choice = scanf(" %d",&choice);
-    */
-    return 2;
+    choice = scanf("%d",&choice);
+    printf("%d\n",choice);
+    return choice;
 }
 
 void game(){
