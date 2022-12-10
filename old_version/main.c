@@ -176,7 +176,12 @@ void genetic(){
 }
 
 int main(int argc, char **argv){
-        
+    
+    if(argc!=2){
+        printf("Incorrect number of arguments\n");
+        return 1;
+    }
+
     char opt = getopt(argc,argv,"gGh");
 
     if(opt == 'g')
