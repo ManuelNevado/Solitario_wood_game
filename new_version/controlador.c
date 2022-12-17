@@ -10,8 +10,6 @@ void help_text();
 int game();             //return 1 if victory
 int genetic_game();     //return 1 if victory
 
-
-
 int main(int argc, char** argv){
 
     char opt = getopt(argc,argv,"gGh");
@@ -20,7 +18,9 @@ int main(int argc, char** argv){
         help_text();
     }else if(opt == 'g'){
         //TODO game
-
+        int* board = create_board();
+        show_board(board);
+        free(board);
     }else if(opt == 'G'){
         //TODO Genetic algorithm
 

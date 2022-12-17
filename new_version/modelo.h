@@ -2,17 +2,10 @@
 
 #include <stdlib.h>
 #include <string.h>
-#define ROW_LENGTH 9
-#define COL_LENGTH 9
+#include "common_headers.h"
 
-int offset(int i, int j);       //calculate the position in the single dimmension array
 int* create_board();            //create the board where the game would be played
 int game();                     //Flow of the game
-
-
-int offset(int i, int j){
-    return j*ROW_LENGTH+i;
-}
 
 int* create_board(){
     /*
@@ -32,22 +25,22 @@ int* create_board(){
     for(int i=0;i<3;i++){
         for(int j=0;j<3;j++){
             //first row of 3x3 squares
-            board[offset(i,j)] = -1;
-            board[offset(i+3,j)] = 1;
-            board[offset(i+6,j)] = -1;
+            board[matriz(i,j)] = -1;
+            board[matriz(i+3,j)] = 1;
+            board[matriz(i+6,j)] = -1;
             //second row of 3x3
-            board[offset(i,j+3)] = 1;
-            board[offset(i+3,j+3)] = 1;
-            board[offset(i+6,j+3)] = 1;
+            board[matriz(i,j+3)] = 1;
+            board[matriz(i+3,j+3)] = 1;
+            board[matriz(i+6,j+3)] = 1;
             //third row of 3x3
-            board[offset(i,j+6)] = -1;
-            board[offset(i+3,j+6)] = 1;
-            board[offset(i+6,j+6)] = -1;
+            board[matriz(i,j+6)] = -1;
+            board[matriz(i+3,j+6)] = 1;
+            board[matriz(i+6,j+6)] = -1;
         }
     }
     
     //The center gets emptied
-    board[offset(4,4)] = 0;
+    board[matriz(4,4)] = 0;
 
     return board;
 }
